@@ -4,6 +4,7 @@
 */
 
 #include <iostream>
+#include "CS285_johnsonE_wk1.h"
 using namespace std;
 
 int main()
@@ -43,7 +44,7 @@ int main()
     accounts[5].balance = 600.00;
     accounts[5].interestRate = .06;
 
-    accounts[6].accountHolderName = "Ronnie Lot"
+    accounts[6].accountHolderName = "Ronnie Lot";
     accounts[6].accountType = "checking";
     accounts[6].balance = 700.00;
     accounts[6].interestRate = .07;
@@ -64,7 +65,7 @@ int main()
     accounts[9].interestRate = .10;
 
     //  Print account info for all ten accounts
-    for (i=0, i < 10, i++)
+    for (int i=0; i < 10; i++)
     {
         accounts[i].print();
     }

@@ -7,8 +7,6 @@
 #include <string>
 #include "CS285_johnsonE_wk1.h"
 
-using namespace std;
-
 /*
         void deposit(double);
         void withdraw(double);
@@ -27,35 +25,36 @@ void BankAccount::deposit()
 {
     double depositAmount = 0;
     
-    cout << "Enter deposit amount: ";
-    cin >> depositAmount;
-    cout << endl;
+    std::cout << "Enter deposit amount: ";
+    std::cin >> depositAmount;
+    std::cout << std::endl;
 
     if (depositAmount >= 0)
         updateBalance(depositAmount);
     else
-        cout << "Please enter a valid amount." << endl;    
+        std::cout << "Please enter a valid amount." << std::endl;    
 }
 
 void BankAccount::withdraw()
 {
     double withdrawAmount = 0;
 
-    cout << "Enter withdraw amount: ";
-    cin >> withdrawAmount;
-    cout << endl;
+    std::cout << "Enter withdraw amount: ";
+    std::cin >> withdrawAmount;
+    std::cout << std::endl;
 
     if (withdrawAmount >= 0)
-        withdrawAmount *= -1;
+    {    withdrawAmount *= -1;
         updateBalance(withdrawAmount);
+    }
     else
-        cout << "Please enter a valid amount." << endl;   
+        std::cout << "Please enter a valid amount." << std::endl;   
 }
 
 double BankAccount::getInterest()
 {
-    double interest = balance * interestRate
-    cout << "Interest: $" + interest << endl;
+    double interest = balance * interestRate;
+    std::cout << "Interest: $" + interest << std::endl;
 }
 
 void BankAccount::updateBalance(double debit)
@@ -65,12 +64,12 @@ void BankAccount::updateBalance(double debit)
 
 void BankAccount::print()
 {
-    cout << endl;
-    cout << "Account holder's name: " + accountHolderName << endl;
-    cout << "Account type: " + accountType << endl;
-    cout << "Account number: " + accountNumber << endl;
-    cout << "Balance: " + balance << endl;
-    cout << "Interest rate: " + interestRate << endl;    
+    std::cout << std::endl;
+    std::cout << "Account holder's name: " + accountHolderName << std::endl;
+    std::cout << "Account type: " + accountType << std::endl;
+    std::cout << "Account number: " + accountNumber << std::endl;
+    std::cout << "Balance: " + balance << std::endl;
+    std::cout << "Interest rate: " + interestRate << std::endl;    
 }
 
 int BankAccount::getAccountNumber()
@@ -78,12 +77,12 @@ int BankAccount::getAccountNumber()
     return accountNumber;
 }
 
-string BankAccount::getAccountHolderName()
+std::string BankAccount::getAccountHolderName()
 {
     return accountHolderName;
 }
 
-string BankAccount::getAccountType()
+std::string BankAccount::getAccountType()
 {
     return accountType;
 }

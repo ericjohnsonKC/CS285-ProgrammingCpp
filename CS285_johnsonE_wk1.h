@@ -5,26 +5,26 @@
 
 #include <iostream>
 #include <string>
-using namespace std;
 
-class BankAccount{
+class BankAccount
+{
     public:
         void deposit();
         void withdraw();
-        double getInterest() const;
+        double getInterest();
         void print() const;
         int getAccountNumber() const;
-        string getAccountType() const;
+        std::string getAccountType() const;
         double getBalance() const;
         double getInterestRate() const;
         static int accountNumberGenerator;
-        BankAccount(string, string, double, double, int);
+        BankAccount(std::string, std::string, double, double, int);
         BankAccount();
         
     private:
-        string accountHolderName;
+        std::string accountHolderName;
         int accountNumber;
-        string accountType;
+        std::string accountType;
         double balance;
         double interestRate;
         
