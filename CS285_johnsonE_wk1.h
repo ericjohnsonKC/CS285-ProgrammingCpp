@@ -17,7 +17,8 @@ class BankAccount{
         string getAccountType() const;
         double getBalance() const;
         double getInterestRate() const;
-        BankAccount(string, string, double, double);
+        static int accountNumberGenerator;
+        BankAccount(string, string, double, double, int);
         BankAccount();
         
     private:
@@ -26,7 +27,7 @@ class BankAccount{
         string accountType;
         double balance;
         double interestRate;
-        static int accountNumber;
+        
 
         void updateBalance(double);
 

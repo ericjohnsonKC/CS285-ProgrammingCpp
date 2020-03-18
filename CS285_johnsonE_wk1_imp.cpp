@@ -65,8 +65,10 @@ void BankAccount::updateBalance(double debit)
 
 void BankAccount::print()
 {
+    cout << endl;
     cout << "Account holder's name: " + accountHolderName << endl;
     cout << "Account type: " + accountType << endl;
+    cout << "Account number: " + accountNumber << endl;
     cout << "Balance: " + balance << endl;
     cout << "Interest rate: " + interestRate << endl;    
 }
@@ -96,12 +98,13 @@ double BankAccount::getInterestRate()
     return interestRate;
 }
 
-BankAccount(string name, string type, double bal, double rate)
+BankAccount(string name, string type, double bal, double rate, int acctGenSeed)
 {
     accountHolderName = name;
     accountType = type;
     balance = bal;
     interestRate = rate;
+
 }
 
 BankAccount()
@@ -110,4 +113,7 @@ BankAccount()
     accountType = "";
     balance = 0;
     interestRate = 0;
+    accountNumberGenerator = 1;
+    accountNumber = accountNumberGenerator
+    accountNumberGenerator++;
 }
