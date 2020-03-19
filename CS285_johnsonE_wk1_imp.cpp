@@ -1,25 +1,22 @@
 /*  Author: Eric Johnson, Date: 3/16/2020
     Grantham University, Student ID: 150737
     CS285 Programming in C++ Week 1 assignment 
+
+    This is the class implementation file for 
+    an assignment on data abstraction.  It 
+    contains member function definitions for 
+    the class members prototyped in the header file.
 */
 
 #include <iostream>
 #include <string>
 #include "CS285_johnsonE_wk1.h"
 
-/*
-        void deposit(double);
-        void withdraw(double);
-        double getInterest() const;
-        double updateBalance();
-        void print() const;
-        int getAccountNumber() const;
-        string getAccountType() const;
-        double getBalance() const;
-        double getInterestRate() const;
-        BankAccount(string, string, double, double);
-        BankAccount();
-*/
+
+// Member functions for the class BankAccount are
+// defined below.  The class definition is referenced
+// above in the include statement to the .h file.
+
 
 void BankAccount::deposit()
 {
@@ -44,7 +41,8 @@ void BankAccount::withdraw()
     std::cout << std::endl;
 
     if (withdrawAmount >= 0)
-    {    withdrawAmount *= -1;
+    {    
+        withdrawAmount *= -1;
         updateBalance(withdrawAmount);
     }
     else
@@ -54,7 +52,8 @@ void BankAccount::withdraw()
 double BankAccount::getInterest()
 {
     double interest = balance * interestRate;
-    std::cout << "Interest: $" + interest << std::endl;
+    std::cout << "Interest: $";
+    std::cout << interest << std::endl;
 }
 
 void BankAccount::updateBalance(double debit)
@@ -67,9 +66,12 @@ void BankAccount::print()
     std::cout << std::endl;
     std::cout << "Account holder's name: " + accountHolderName << std::endl;
     std::cout << "Account type: " + accountType << std::endl;
-    std::cout << "Account number: " + accountNumber << std::endl;
-    std::cout << "Balance: " + balance << std::endl;
-    std::cout << "Interest rate: " + interestRate << std::endl;    
+    std::cout << "Account number: ";
+    std::cout << accountNumber << std::endl;
+    std::cout << "Balance: ";
+    std::cout << balance << std::endl;
+    std::cout << "Interest rate: ";
+    std::cout << interestRate << std::endl;    
 }
 
 int BankAccount::getAccountNumber()
@@ -97,22 +99,23 @@ double BankAccount::getInterestRate()
     return interestRate;
 }
 
-BankAccount(string name, string type, double bal, double rate, int acctGenSeed)
-{
-    accountHolderName = name;
-    accountType = type;
-    balance = bal;
-    interestRate = rate;
+// Below is the constructor method.  It takes 
+// no parameters, but it requires user input
+// to assign all of the member variables.
+// There are no setter/mutator methods for this
+// class.
 
-}
-
-BankAccount()
+BankAccount::BankAccount()
 {
-    accountHolderName = "";
-    accountType = "";
-    balance = 0;
-    interestRate = 0;
-    accountNumberGenerator = 1;
-    accountNumber = accountNumberGenerator
-    accountNumberGenerator++;
+    std::cout << std::endl;
+    std::cout << "Account holder name: ";
+    std::cin >> accountHolderName;
+    std::cout << "Account type: ";
+    std::cin >> accountType;
+    std::cout << "Balance: ";
+    std::cin >> balance;
+    std::cout << "Interest rate: ";
+    std::cin >> interestRate;
+    accountNumber = BankAccount::accountNumberGenerator;
+    BankAccount::accountNumberGenerator++;
 }
