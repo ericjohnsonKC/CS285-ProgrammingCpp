@@ -18,54 +18,46 @@
 // above in the include statement to the .h file.
 
 
-void BankAccount::deposit()
+void BankAccount::deposit(amount)
 {
-    double depositAmount = 0;
-    
-    std::cout << "Enter deposit amount: ";
-    std::cin >> depositAmount;
-    std::cout << std::endl;
-
-    if (depositAmount >= 0)
-        updateBalance(depositAmount);
-    else
-        std::cout << "Please enter a valid amount." << std::endl;    
-}
-
-void BankAccount::withdraw()
-{
-    double withdrawAmount = 0;
-
-    std::cout << "Enter withdraw amount: ";
-    std::cin >> withdrawAmount;
-    std::cout << std::endl;
-
-    if (withdrawAmount >= 0)
-    {    
-        withdrawAmount *= -1;
-        updateBalance(withdrawAmount);
+    if (amount >= 0)
+    {
+        updateBalance(amount);
+        return balance;
     }
     else
-        std::cout << "Please enter a valid amount." << std::endl;   
+        return balance;    
+}
+
+void BankAccount::withdraw(amount)
+{
+    if (amount >= 0)
+    {    
+        amount *= -1;
+        updateBalance(amount);
+        return balance;
+    }
+    else
+        return balance;   
 }
 
 double BankAccount::getInterest()
 {
-    double interest = balance * interestRate;
-    std::cout << "Interest: $";
-    std::cout << interest << std::endl;
+    return balance * interestRate;
+    
 }
 
 void BankAccount::updateBalance(double debit)
 {
     balance += debit;
+    return balance;
 }
 
 void BankAccount::print()
 {
     std::cout << std::endl;
-    std::cout << "Account holder's name: " + accountHolderName << std::endl;
-    std::cout << "Account type: " + accountType << std::endl;
+    std::cout << "Account holder's name: " << accountHolderName << std::endl;
+    std::cout << "Account type: " << accountType << std::endl;
     std::cout << "Account number: ";
     std::cout << accountNumber << std::endl;
     std::cout << "Balance: ";
@@ -105,17 +97,17 @@ double BankAccount::getInterestRate()
 // There are no setter/mutator methods for this
 // class.
 
-BankAccount::BankAccount()
+BankAccount::BankAccount(std::string name, std::string acctType, double deposit, double intRate)
 {
-    std::cout << std::endl;
-    std::cout << "Account holder name: ";
-    std::cin >> accountHolderName;
-    std::cout << "Account type: ";
-    std::cin >> accountType;
-    std::cout << "Balance: ";
-    std::cin >> balance;
-    std::cout << "Interest rate: ";
-    std::cin >> interestRate;
-    accountNumber = BankAccount::accountNumberGenerator;
-    BankAccount::accountNumberGenerator++;
+    setAccountData(name, acctType, deposit, intRate)
+}
+
+void BankAccount::setAccountData(std::string name, std::string acctType, double deposit, double intRate)
+{
+    accountHolderName = name;
+    accountType = acctType;
+    accountNumber = accountNumberGenerator;
+    accountNumberGenerator += 100;
+    balance = deposit;
+    interestRate = intRate;
 }
