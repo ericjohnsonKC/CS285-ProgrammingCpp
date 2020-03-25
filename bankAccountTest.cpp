@@ -7,28 +7,29 @@
 */
 
 #include <iostream>
-#include "CS285_johnsonE_wk1.h"
+#include "bankAccount.h"
 
 
 int BankAccount::accountNumberGenerator = 1234;
     // Initializes the accountNumberGenerator with 
     // a seed value
 
-std::string name, acctType
-double deposit, intRate
+std::string name, acctType;
+double deposit, intRate;
+
+BankAccount accounts[2];
+    // BankAccount accounts[10];
+        // Creates an array of 10 BankAccounts, using the 
+        // default constructor
 
 int main()
 {
-    BankAccount accounts[10];
-    // Creates an array of 10 BankAccounts, using the 
-    // default constructor.
-
-    for (int i=0; i < 10; i++)
+    for (int i=0; i < 2; i++)
     {
-        std::cout << endl;
+        std::cout << std::endl;
         std::cout << "Please enter account data for account number ";
-        std::cout << BankAccount[i].getAccountNumber << std::cout << ":";
-        std::cout << endl;
+        std::cout << accounts[i].getAccountNumber() << ":";
+        std::cout << std::endl;
         std::cout << "Account holder name: ";
         std::cin >> name;
         std::cout << "Account type (checking or savings): ";
@@ -37,12 +38,10 @@ int main()
         std::cin >> deposit;
         std::cout << "Initial interest rate: ";
         std::cin >> intRate;
-        BankAccount[i].setAccountData(name, acctType, deposit, intRate);
+        accounts[i].setAccountData(name, acctType, deposit, intRate);
     }
 
-
-
-    //Seperator for readability:
+    //Separator for readability:
     std::cout << std::endl;
     std::cout << "PRINTED RESULTS...";
     std::cout << std::endl;

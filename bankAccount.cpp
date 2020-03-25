@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <string>
-#include "CS285_johnsonE_wk1.h"
+#include "bankAccount.h"
 
 
 // Member functions for the class BankAccount are
@@ -18,7 +18,7 @@
 // above in the include statement to the .h file.
 
 
-void BankAccount::deposit(amount)
+double BankAccount::deposit(double amount)
 {
     if (amount >= 0)
     {
@@ -29,7 +29,7 @@ void BankAccount::deposit(amount)
         return balance;    
 }
 
-void BankAccount::withdraw(amount)
+double BankAccount::withdraw(double amount)
 {
     if (amount >= 0)
     {    
@@ -47,7 +47,7 @@ double BankAccount::getInterest()
     
 }
 
-void BankAccount::updateBalance(double debit)
+double BankAccount::updateBalance(double debit)
 {
     balance += debit;
     return balance;
@@ -99,7 +99,7 @@ double BankAccount::getInterestRate()
 
 BankAccount::BankAccount(std::string name, std::string acctType, double deposit, double intRate)
 {
-    setAccountData(name, acctType, deposit, intRate)
+    setAccountData(name, acctType, deposit, intRate);
 }
 
 void BankAccount::setAccountData(std::string name, std::string acctType, double deposit, double intRate)

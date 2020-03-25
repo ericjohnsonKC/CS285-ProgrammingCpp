@@ -9,22 +9,22 @@
     definitions, and a separate main program file.
 */
 
-#ifndef H_bankAccount
-#define H_bankAccount
+#ifndef bankAccountH
+#define bankAccountH
 #include <iostream>
 #include <string>
 
 class BankAccount
 {
     public:
-        void deposit(double amount);
+        double deposit(double amount);
             // Takes a deposit amount and updates account balance.
             // Postcondition: Account balance reflects the deposit
-            // amount.
-        void withdraw(double amount);
+            // amount. Returns balance.
+        double withdraw(double amount);
             // Takes a withdrawal amount and updates account balance.
             // Postcondition: Account balance reflects the deposit
-            // amount.
+            // amount. Returns balance.
         double getInterest();
             // Multiplies interest rate times balance.
             // Postcondition:  Returns interest amount.
@@ -45,10 +45,10 @@ class BankAccount
         static int accountNumberGenerator;
             // This variable is used to provide account numbers
             // for account object intitialization.
-        BankAccount();
-            // Default constructor.  Calls setAccountInfo() to 
+        BankAccount(std::string name = "", std::string acctType = "", double deposit = 0.0, double intRate = 0.0);
+            // Constructor.  Calls setAccountInfo() to 
             // initialize member variables.
-        void setAccountData();
+        void setAccountData(std::string name, std::string acctType, double deposit, double intRate);
             // Setter method for account data.
             // Postcondition: Initializes member variables.
     private:
@@ -58,7 +58,7 @@ class BankAccount
         double balance;
         double interestRate;
         
-        void updateBalance(double);
+        double updateBalance(double);
             // Used to update account balance when deposit() or 
             // withdraw() are called.
             // Postcondition: The balance is updated to reflect
