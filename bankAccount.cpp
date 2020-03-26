@@ -10,7 +10,6 @@
 */
 
 #include <iostream>
-#include <string>
 #include "bankAccount.h"
 
 
@@ -52,11 +51,17 @@ void BankAccount::print()
     std::cout << "Balance: " << balance;
     std::cout << std::endl;
 }
-            
+
+void BankAccount::updateBalance(double amount)
+{
+    balance += amount;
+}
+
 BankAccount::BankAccount(int acctNum, double initialDeposit)
 {
     setAccountNumber(acctNum);
     balance = 0;
-    deposit(initialDeposit);
+    if (initialDeposit > 0)
+        deposit(initialDeposit);
 }
-            
+

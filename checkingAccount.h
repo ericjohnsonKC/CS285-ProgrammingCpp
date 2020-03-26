@@ -9,15 +9,13 @@
     implementation files, and a main test file.
 */
 
-#ifndef CheckingAccountH
-#define CheckingAccountH
+#ifndef CheckingAccount_h
+#define CheckingAccount_h
 #include "bankAccount.h"
-#include <iostream>
-#include <string>
 
 class CheckingAccount: public BankAccount
 {
-    public:
+    public:      
         double getMinimumBalance();
             // Returns minimum balance.
         void setMinimumBalance(double minBal);
@@ -25,24 +23,24 @@ class CheckingAccount: public BankAccount
             // minimumBalance.
         double getInterestRate();
             // Returns the interest rate.
-        void setInterestRate();
+        void setInterestRate(double intRate);
             // Sets the value of the variable
             // interestRate.
         double getServiceCharge();
             // Returns the service charge.
-        void setServiceCharge();
+        void setServiceCharge(double svcChg);
             // Sets the value of the variable
             // serviceCharge.
-        double postInterest();
+        void postInterest();
             // Multiplies interest rate times
-            // the current balance, returns the
+            // the current balance, then adds
             // resulting amount of interest 
-            // earned.
+            // earned to the balance.
         void writeCheck(double amount);
             // Calls the withdraw function, 
             // reducing account balance by
             // the check/withdrawal amount.
-        void withdraw();
+        std::string withdraw(double amount);
             // Checks to ensure sufficient funds
             // first and reports a warning if not.
             // If sufficient funds available to make
@@ -59,9 +57,15 @@ class CheckingAccount: public BankAccount
             // Prints accountNumber, balance, 
             // interestRate, minimumBalance, and
             // serviceCharge.
-        CheckingAccount()
-
+        CheckingAccount(int acctNum = 0, double initialDeposit = 0, double intRate = 0, double minBal = 0, double svcChg = 0);
+            // Constructor.  Sets accountNumber, balance
+            // (by making an initial deposit), interestRate,
+            // minimumBalance, and serviceCharge.
     private:
+        double interestRate;
+        double minimumBalance;
+        double serviceCharge;
+
 };
 
 #endif

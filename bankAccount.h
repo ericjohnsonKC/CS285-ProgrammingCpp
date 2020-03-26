@@ -9,14 +9,12 @@
     implementation files, and a main test file.
 */
 
-#ifndef BankAccountH
-#define BankAccountH
-#include <iostream>
-#include <string>
+#ifndef BankAccount_h
+#define BankAccount_h
 
 class BankAccount
 {
-    public:
+    public:         
         void setAccountNumber(int acctNum);
             // Sets the account number.
         int getAccountNumber();
@@ -34,9 +32,18 @@ class BankAccount
             // balance.
         BankAccount(int acctNum = 0, double initialDeposit = 0);
             // Constructor.  
+    
     private:
        int accountNumber;
        double balance;
+    
+    protected:
+        void updateBalance(double amount);
+            // Updates the balance by adding
+            // the amount to the previous 
+            // balance.  For withdrawals, 
+            // the argument expected is a 
+            // negative number.
 };
 
 #endif
