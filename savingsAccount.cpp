@@ -1,9 +1,9 @@
-/*  Author: Eric Johnson, Date: 3/24/2020
+/*  Author: Eric Johnson, Date: 3/31/2020
     Grantham University, Student ID: 150737
-    CS285 Programming in C++ Week 2 assignment 
+    CS285 Programming in C++ Week 3 assignment 
 
     This is the class implementation file for 
-    an assignment on inheritance.  It 
+    an assignment on polymorphism.  It 
     contains member function definitions for 
     the SavingsAccount class members prototyped 
     in the header file.
@@ -11,40 +11,48 @@
 
 #include <iostream>
 #include "savingsAccount.h"
+
+using namespace std;
+
+
           
 double SavingsAccount::getInterestRate()
 {
     return interestRate;
 }
+
 void SavingsAccount::setInterestRate(double intRate)
 {
     interestRate = intRate;
 }
 
-std::string SavingsAccount::withdraw(double amount)
+void SavingsAccount::withdraw(double amount)
 {
     if (amount > getBalance())
-        return "Amount exceeds account balance. Insufficient funds";
-    updateBalance(amount * -1);
-    return "Withdrawal successful.";
+        cout << "Amount exceeds account balance. Insufficient funds";
+    else 
+        BankAccount::withdraw(amount);
 }
 
 void SavingsAccount::postInterest()
 {
-    double interest = getBalance() * interestRate;
-    updateBalance(interest);
+    deposit(getBalance() * interestRate);
+    
 }
    
 void SavingsAccount::print()
 {
-    std::cout << std::endl;
-    std::cout << "AccountNumber: " << getAccountNumber() << std::endl;
-    std::cout << "Balance: " << getBalance() << std::endl;
-    std::cout << "Interest rate: " << getInterestRate() << std::endl;
+    BankAccount::print();
+    cout << "\nInterest rate: " << getInterestRate() << endl;
 }
 
-SavingsAccount::SavingsAccount(int acctNum, double initialDeposit, double intRate)
-    : BankAccount(acctNum, initialDeposit)
+void SavingsAccount::createMonthlyStatement()
+{
+    postInterest();
+}
+
+SavingsAccount::SavingsAccount(int acctNum, string acctOwnerName, double initialDeposit, double intRate)
+    : BankAccount(acctNum, acctOwnerName, initialDeposit)
 {
     interestRate = intRate;
 } 

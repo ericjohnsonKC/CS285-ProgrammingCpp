@@ -1,9 +1,9 @@
-/*  Author: Eric Johnson, Date: 3/24/2020
+/*  Author: Eric Johnson, Date: 3/31/2020
     Grantham University, Student ID: 150737
-    CS285 Programming in C++ Week 2 assignment 
+    CS285 Programming in C++ Week 3 assignment 
 
     This is the class implementation file for 
-    an assignment on inheritance.  It 
+    an assignment on polymorphism.  It 
     contains member function definitions for 
     the CheckingAccount class members prototyped 
     in the header file.
@@ -11,6 +11,10 @@
 
 #include <iostream>
 #include "checkingAccount.h"
+
+using namespace std;
+
+
 
 double CheckingAccount::getMinimumBalance()
 {
@@ -45,7 +49,7 @@ void CheckingAccount::setServiceCharge(double svcChg)
 void CheckingAccount::postInterest()
 {
     double interest = getBalance() * interestRate;
-    updateBalance(interest);
+    deposit(interest);
 }
     
 void CheckingAccount::writeCheck(double amount)
@@ -53,37 +57,43 @@ void CheckingAccount::writeCheck(double amount)
     withdraw(amount);
 }
      
-std::string CheckingAccount::withdraw(double amount)
+void CheckingAccount::withdraw(double amount)
 {
-    double bal = getBalance();
-    if (amount > bal)
-        return "Error: Withdrawal amount exceeds balance. Insufficient funds.";
-    if ((bal - amount) < minimumBalance)
-    {
-        if ((bal - amount - serviceCharge) < 0)
-            return "Error: Withdrawal requires service charge for exceeding minimum balance.  Insufficient funds.";
-        amount *= -1;
-        updateBalance(amount - serviceCharge);
+    if (getBalance() < amount)
+        cout << "Error: Insufficient funds.";
+    else 
+    {    
+        if ((getBalance() - amount) < minimumBalance)
+        {  
+            if ((getBalance() - amount - serviceCharge) < 0)
+            {    
+                cout << "Error: Below minimum balance, service charge would apply, insufficient funds.";
+            }
+            else
+                BankAccount::withdraw(amount + serviceCharge);
+        }
+        else
+            BankAccount::withdraw(amount);          
     }
-    amount *= -1;
-    updateBalance(amount);
-    return "Withdrawal successful.";
 }
     
 void CheckingAccount::print()
 {
-    std::cout << std::endl;
-    std::cout << "Account Number: " << getAccountNumber() << std::endl;
-    std::cout << "Balance: " << getBalance() << std::endl;
-    std::cout << "Interest Rate: " << interestRate << std::endl;
-    std::cout << "Minimum Balance: " << minimumBalance << std::endl;
-    std::cout << "Service Charge: " << serviceCharge << std::endl;
+    BankAccount::print();
+    cout << "\nInterest Rate: " << interestRate << endl;
 }
 
-CheckingAccount::CheckingAccount(int acctNum, double initialDeposit, double intRate, double minBal, double svcChg)
-    : BankAccount(acctNum, initialDeposit)
+void CheckingAccount::createMonthlyStatement()
+{
+    postInterest();
+    BankAccount::withdraw(fee);
+}
+
+CheckingAccount::CheckingAccount(int acctNum, string acctOwnerName, double initialDeposit, double intRate, double minBal, double svcChg, double monthlyFee)
+    : BankAccount(acctNum, acctOwnerName, initialDeposit)
 {
     setInterestRate(intRate);
     setMinimumBalance(minBal);
     setServiceCharge(svcChg);
+    fee = monthlyFee;
 }
