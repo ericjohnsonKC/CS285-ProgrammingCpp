@@ -16,7 +16,7 @@
 
 using namespace std;
 
-template<class dataType>
+template<typename T>
 class Fraction
 {
     friend ostream& operator<< (ostream& osObj, Fraction& thisFraction);
@@ -32,14 +32,14 @@ class Fraction
         // Ex: 1/2 or 2/3, etc.
     
     public:
-        void setValues(dataType& numeratorParam, dataType& denominatorParam);
+        void setValues(T& numeratorParam, T& denominatorParam);
             // Sets the values of the member private
             // variables numerator and denominator.
 
-        int getNumerator() const;
+        T getNumerator() const;
             // Returns the value of numerator.
 
-        int getDenominator() const;
+        T getDenominator() const;
             // Returns the value of denominator.
 
         Fraction operator++ ();
@@ -48,7 +48,7 @@ class Fraction
             // numerator by 1 BEFORE using
             // the object in an expression.
 
-        Fraction operator++ (dataType dummyParameter);
+        Fraction operator++ (T dummyParameter);
             // Post-increment operator.
             // Increments the value of the 
             // numerator by 1 AFTER using 
@@ -60,7 +60,7 @@ class Fraction
             // numerator by 1 BEFORE using
             // the object in an expression.
 
-        Fraction operator-- (dataType dummyParameter);
+        Fraction operator-- (T dummyParameter);
             // Post-decrement operator.
             // Decrements the value of the 
             // numerator by 1 AFTER using 
@@ -121,8 +121,8 @@ class Fraction
             // Constructor with default values.
    
     private:
-        dataType numerator;
-        dataType denominator;
+        T numerator;
+        T denominator;
 };
 
 #endif
@@ -153,16 +153,15 @@ class Fraction
 //using namespace std;
     // Commented out for same reason as above.
 
-template <class dataType>
-ostream& operator<< (ostream& osObj, Fraction<dataType>& thisFraction)
+
+ostream& operator<< (ostream& osObj, Fraction<T>& thisFraction)
 {
     osObj << thisFraction.numerator << "/" << thisFraction.denominator;
     
     return osObj;
 }
 
-template <class dataType>
-istream& operator>> (istream& isObj, Fraction<dataType>& thisFraction)
+istream& operator>> (istream& isObj, Fraction<T>& thisFraction)
 {
     char ch;
     
@@ -172,35 +171,35 @@ istream& operator>> (istream& isObj, Fraction<dataType>& thisFraction)
     
     return isObj;
 }
-template <class dataType>
-void Fraction<dataType>::setValues(dataType& numeratorParam, dataType& denominatorParam)
+template <typename T>
+void Fraction<T>::setValues(T& numeratorParam, T& denominatorParam)
 {
     numerator = numeratorParam;
     denominator = denominatorParam;
 }
 
-template <class dataType>
-int Fraction<dataType>::getNumerator() const
+template <typename T>
+T Fraction<T>::getNumerator() const
 {
     return numerator;
 }
 
-template <class dataType>
-int Fraction<dataType>::getDenominator() const
+template <typename T>
+T Fraction<T>::getDenominator() const
 {
     return denominator;
 }
 
-template <class dataType>
-Fraction<dataType> Fraction<dataType>::operator++ ()
+template <typename T>
+Fraction Fraction<T>::operator++ ()
 {
     ++numerator;
 
     return *this;
 }
 
-template <class dataType>
-Fraction<dataType> Fraction<dataType>::operator++ (dataType dummyParameter)
+template <typename T>
+Fraction Fraction<T>::operator++ (T dummyParameter)
 {
     Fraction temp = *this;
 
@@ -210,16 +209,16 @@ Fraction<dataType> Fraction<dataType>::operator++ (dataType dummyParameter)
 
 }
 
-template <class dataType>
-Fraction<dataType> Fraction<dataType>::operator-- ()
+template <typename T>
+Fraction Fraction<T>::operator-- ()
 {
     numerator--;
 
     return *this;
 }
 
-template <class dataType>
-Fraction<dataType> Fraction<dataType>::operator-- (dataType dummyParameter)
+template <typename T>
+Fraction Fraction<T>::operator-- (T dummyParameter)
 {
     Fraction temp = *this;
 
@@ -228,8 +227,8 @@ Fraction<dataType> Fraction<dataType>::operator-- (dataType dummyParameter)
     return temp;
 }
 
-template <class dataType>
-bool Fraction<dataType>::operator== (const Fraction& otherFraction) const
+template <typename T>
+bool Fraction<T>::operator== (const Fraction& otherFraction) const
 {
     double thisFrac = (numerator / denominator) + (numerator % denominator);
     double otherFrac = (otherFraction.numerator / otherFraction.denominator)
@@ -238,8 +237,8 @@ bool Fraction<dataType>::operator== (const Fraction& otherFraction) const
     return (thisFrac == otherFrac);  
 }
 
-template <class dataType>
-bool Fraction<dataType>::operator!= (const Fraction& otherFraction) const
+template <typename T>
+bool Fraction<T>::operator!= (const Fraction& otherFraction) const
 {
     double thisFrac = (numerator / denominator) + (numerator % denominator);
     double otherFrac = (otherFraction.numerator / otherFraction.denominator)
@@ -248,8 +247,8 @@ bool Fraction<dataType>::operator!= (const Fraction& otherFraction) const
     return (thisFrac != otherFrac); 
 }
 
-template <class dataType>
-bool Fraction<dataType>::operator<= (const Fraction& otherFraction) const
+template <typename T>
+bool Fraction<T>::operator<= (const Fraction& otherFraction) const
 {
     double thisFrac = (numerator / denominator) + (numerator % denominator);
     double otherFrac = (otherFraction.numerator / otherFraction.denominator)
@@ -258,8 +257,8 @@ bool Fraction<dataType>::operator<= (const Fraction& otherFraction) const
 return (thisFrac <= otherFrac);   
 }
 
-template <class dataType>
-bool Fraction<dataType>::operator< (const Fraction& otherFraction) const
+template <typename T>
+bool Fraction<T>::operator< (const Fraction& otherFraction) const
 {
     double thisFrac = (numerator / denominator) + (numerator % denominator);
     double otherFrac = (otherFraction.numerator / otherFraction.denominator)
@@ -268,8 +267,8 @@ bool Fraction<dataType>::operator< (const Fraction& otherFraction) const
 return (thisFrac < otherFrac);
 }
 
-template <class dataType>
-bool Fraction<dataType>::operator>= (const Fraction& otherFraction) const
+template <typename T>
+bool Fraction<T>::operator>= (const Fraction& otherFraction) const
 {
     double thisFrac = (numerator / denominator) + (numerator % denominator);
     double otherFrac = (otherFraction.numerator / otherFraction.denominator)
@@ -278,8 +277,8 @@ bool Fraction<dataType>::operator>= (const Fraction& otherFraction) const
 return (thisFrac >= otherFrac);
 }        
 
-template <class dataType>
-bool Fraction<dataType>::operator> (const Fraction& otherFraction) const
+template <typename T>
+bool Fraction<T>::operator> (const Fraction& otherFraction) const
 {
     double thisFrac = (numerator / denominator) + (numerator % denominator);
     double otherFrac = (otherFraction.numerator / otherFraction.denominator)
@@ -288,8 +287,8 @@ bool Fraction<dataType>::operator> (const Fraction& otherFraction) const
 return (thisFrac > otherFrac);
 }       
 
-template <class dataType>
-Fraction<dataType> Fraction<dataType>::operator+ (const Fraction& otherFraction) const
+template <typename T>
+Fraction Fraction<T>::operator+ (const Fraction& otherFraction) const
 {
     Fraction tempFrac;
 
@@ -300,8 +299,8 @@ Fraction<dataType> Fraction<dataType>::operator+ (const Fraction& otherFraction)
     return tempFrac;
 }
 
-template <class dataType>
-Fraction<dataType> Fraction<dataType>::operator- (const Fraction& otherFraction) const
+template <typename T>
+Fraction Fraction<T>::operator- (const Fraction& otherFraction) const
 {
     Fraction tempFrac;
 
@@ -312,8 +311,8 @@ Fraction<dataType> Fraction<dataType>::operator- (const Fraction& otherFraction)
     return tempFrac;
 }
 
-template <class dataType>
-Fraction<dataType> Fraction<dataType>::operator* (const Fraction& otherFraction) const
+template <typename T>
+Fraction Fraction<T>::operator* (const Fraction& otherFraction) const
 {
     Fraction tempFrac;
 
@@ -323,8 +322,8 @@ Fraction<dataType> Fraction<dataType>::operator* (const Fraction& otherFraction)
     return tempFrac;
 }
 
-template <class dataType>
-Fraction<dataType> Fraction<dataType>::operator/ (const Fraction& otherFraction) const
+template <typename T>
+Fraction Fraction<T>::operator/ (const Fraction& otherFraction) const
 {
     Fraction tempFrac;
 
@@ -334,8 +333,8 @@ Fraction<dataType> Fraction<dataType>::operator/ (const Fraction& otherFraction)
     return tempFrac;
 }
 
-template <class dataType>
-Fraction<dataType>::Fraction<dataType>(dataType numeratorParam, dataType denominatorParam)
+template <typename T>
+Fraction<T>::Fraction(T numeratorParam, T denominatorParam)
 {
     setValues(numeratorParam, denominatorParam);
 }
