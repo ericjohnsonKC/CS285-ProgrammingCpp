@@ -14,17 +14,17 @@
 using namespace std;
 
 
-void Employee::setName(string& thisName)
+void Employee::setName(string thisName)
 {
     name = thisName;
 }
  
-void Employee::setDepartment(string& thisDept)
+void Employee::setDepartment(string thisDept)
 {
     department = thisDept;
 }
 
-void Employee::setTitle(string& thisTitle)
+void Employee::setTitle(string thisTitle)
 {
     title = thisTitle;
 }

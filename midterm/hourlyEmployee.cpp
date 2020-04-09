@@ -84,11 +84,11 @@ HourlyEmployee HourlyEmployee::calculatePay()
     return *this;    
 }
 
-HourlyEmployee::HourlyEmployee(string thisName, double hrsWrkd, double hrlyRate, double tax)
+HourlyEmployee::HourlyEmployee(string thisName, double hrsWrkd, double hrlyRate, double payrollTax)
     : Employee(thisName)
 {
     hoursWorked = hrsWrkd;
     hourlyRate = hrlyRate;
-    taxRate = tax;
+    taxRate = payrollTax;
     overtimePay = regularPay = taxAmount = netPay = 0;
 }

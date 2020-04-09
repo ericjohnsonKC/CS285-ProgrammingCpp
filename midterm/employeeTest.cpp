@@ -50,6 +50,7 @@
 */
 
 #include "hourlyEmployee.h"
+#include "salariedEmployee.h"
 
 #include <iostream>
 
@@ -83,6 +84,24 @@ int main ()
 
     cout << "Number of hourly employees: " << numberOfHourlyEmployees << endl;
     cout << "Average net pay: " << totalNetPayroll/numberOfHourlyEmployees << endl;
+
+    SalariedEmployee linda("Linda", 88027, payrollTaxRate);
+    linda.calculatePay();
+    cout << linda << endl;
+
+    SalariedEmployee orville("Orville", 76543, payrollTaxRate);
+    orville.calculatePay();
+    cout << orville << endl;
+
+    SalariedEmployee poirot("Poirot", 99834, payrollTaxRate);
+    poirot.calculatePay();
+    cout << poirot << endl;
+
+    poirot.setDepartment("Capers and Mischief");
+    poirot.setTitle("Detective");
+
+    cout << "Poirot department: " << poirot.getDepartment << endl;
+    cout << "Poirot title: " << poirot.getTitle << endl;
 
     return 0;
 }

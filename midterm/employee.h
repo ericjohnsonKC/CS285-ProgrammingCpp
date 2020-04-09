@@ -17,13 +17,13 @@ using namespace std;
 class Employee
 {
     public:
-        void setName(string& thisName);
+        void setName(string thisName);
             // Sets the name variable
         
-        void setDepartment(string& thisDept);
+        void setDepartment(string thisDept);
             // Sets the department variable
 
-        void setTitle(string& thisTitle);
+        void setTitle(string thisTitle);
             // Sets the title variable
 
         string getName() const;
@@ -33,7 +33,7 @@ class Employee
             // Returns department variable
 
         string getTitle() const;
-            // Returns title variable
+            // Returns title         
 
         Employee(string thisName = "", string thisDept = "", string thisTitle = "");
             // Constructor with default values

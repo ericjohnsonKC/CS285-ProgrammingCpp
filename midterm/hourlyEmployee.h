@@ -54,7 +54,7 @@ class HourlyEmployee: public Employee
             // Overtime is 1.5 * hourly rate
             // for hours worked over 40.
 
-        HourlyEmployee(string name = "", double hrsWrkd = 0, double hrlyRate = 0, double taxRate = 0);
+        HourlyEmployee(string name = "", double hrsWrkd = 0, double hrlyRate = 0, double payrollTax = 0);
             // Constructor with default values.
 
 
