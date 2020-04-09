@@ -7,8 +7,7 @@
     This is a base class implementation file.
 */
 
-#ifndef employee_h
-#define employee_h
+#include "employee.h"
 
 #include <iostream>
 
@@ -30,23 +29,23 @@ void Employee::setTitle(string& thisTitle)
     title = thisTitle;
 }
     
-string getName() const
+string Employee::getName() const
 {
     return name;
 }
     
-string getDepartment() const
+string Employee::getDepartment() const
 {
     return department;
 }    
 
-string getTitle() const
+string Employee::getTitle() const
 {
     return title;
 }
     
 
-Employee(string& thisName = '', string& thisDept = '', string& thisTitle = '')
+Employee::Employee(string thisName, string thisDept, string thisTitle)
 {
     name = thisName;
     department = thisDept;

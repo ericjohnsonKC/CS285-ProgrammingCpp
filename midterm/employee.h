@@ -35,7 +35,7 @@ class Employee
         string getTitle() const;
             // Returns title variable
 
-        Employee(string& thisName = '', string& thisDept = '', string& thisTitle = '')
+        Employee(string thisName = "", string thisDept = "", string thisTitle = "");
             // Constructor with default values
 
     private:

@@ -48,3 +48,41 @@
     and assignment title in the comments at the top of each 
     file.
 */
+
+#include "hourlyEmployee.h"
+
+#include <iostream>
+
+using namespace std;
+
+
+int main ()
+{
+    double payrollTaxRate = .3; // Sets tax rate to 30%
+    int numberOfHourlyEmployees = 0;
+    int totalNetPayroll = 0;
+
+
+    HourlyEmployee bob("Bob", 37.5, 21, payrollTaxRate);
+    bob.calculatePay();
+    cout << bob << endl;
+    numberOfHourlyEmployees++;
+    totalNetPayroll += bob.getNetPay();
+
+    HourlyEmployee susan("Susan", 40, 17, payrollTaxRate);
+    susan.calculatePay();
+    cout << susan << endl;
+    numberOfHourlyEmployees++;
+    totalNetPayroll += susan.getNetPay();
+
+    HourlyEmployee maurice("Maurice", 47, 19, payrollTaxRate);
+    maurice.calculatePay();
+    cout << maurice << endl;
+    numberOfHourlyEmployees++;
+    totalNetPayroll += maurice.getNetPay();
+
+    cout << "Number of hourly employees: " << numberOfHourlyEmployees << endl;
+    cout << "Average net pay: " << totalNetPayroll/numberOfHourlyEmployees << endl;
+
+    return 0;
+}
