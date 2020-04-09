@@ -61,7 +61,7 @@ int main ()
 {
     double payrollTaxRate = .3; // Sets tax rate to 30%
     int numberOfHourlyEmployees = 0;
-    int totalNetPayroll = 0;
+    double totalNetPayroll = 0;
 
 
     HourlyEmployee bob("Bob", 37.5, 21, payrollTaxRate);
@@ -81,9 +81,10 @@ int main ()
     cout << maurice << endl;
     numberOfHourlyEmployees++;
     totalNetPayroll += maurice.getNetPay();
-
+    cout << "-----------------------------------------" << endl;
     cout << "Number of hourly employees: " << numberOfHourlyEmployees << endl;
     cout << "Average net pay: " << totalNetPayroll/numberOfHourlyEmployees << endl;
+    cout << "-----------------------------------------" << endl << endl;
 
     SalariedEmployee linda("Linda", 88027, payrollTaxRate);
     linda.calculatePay();
@@ -100,8 +101,8 @@ int main ()
     poirot.setDepartment("Capers and Mischief");
     poirot.setTitle("Detective");
 
-    cout << "Poirot department: " << poirot.getDepartment << endl;
-    cout << "Poirot title: " << poirot.getTitle << endl;
+    cout << "Poirot department: " << poirot.getDepartment() << endl;
+    cout << "Poirot title: " << poirot.getTitle() << endl;
 
     return 0;
 }
