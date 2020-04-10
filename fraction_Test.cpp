@@ -9,7 +9,7 @@
     arithmetic on them.
 */
 
-#include "fraction.h"
+#include "fraction.cpp"
 
 #include <iostream>
 
@@ -100,6 +100,8 @@ int main()
     //-------------------------------------------------------------------------------------
 
     // Part two, using doubles:
+
+    cout << "Now testing using double precision floats..." << endl;
 
     // Test the constructors:
     Fraction<double> frac_4(1.2, 2.3);

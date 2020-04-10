@@ -9,8 +9,8 @@
     arithmetic on them.
 */
 
-#ifndef fraction_h
-#define fraction_h
+#ifndef _fraction_H
+#define _fraction_H
 
 #include <iostream>
 
