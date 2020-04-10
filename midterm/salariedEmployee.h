@@ -7,15 +7,6 @@
     This is a derived class header file
 */
 
-// Create a salariedEmployee class (which inherits from 
-//     the Employee class) which hold the annual salary of 
-//     the employee. To define the class, include the 
-//     appropriate data members, member functions, 
-//     constructors, and access modifiers. Figure weekly pay 
-//     by dividing the annual salary by 52. The output for 
-//     the salaried employee should display the name, gross 
-//     pay, tax amount (compute at 30%), and net pay.
-
 #ifndef salariedEmployee_h
 #define salariedEmployee_h
 
