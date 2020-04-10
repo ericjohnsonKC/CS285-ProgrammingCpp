@@ -19,13 +19,13 @@ using namespace std;
 template<typename T>
 class Fraction
 {
-    friend ostream& operator<< (ostream& osObj, Fraction& thisFraction);
+    friend ostream& operator<< (ostream& osObj, Fraction<T>& thisFraction);
         // Overloads the output stream insertion operator.  
         // The output is in the format:
         // numerator/denominator
         // Ex: 1/2 or 2/3, etc.
     
-    friend istream& operator>> (istream& isObj, Fraction& thisFraction);
+    friend istream& operator>> (istream& isObj, Fraction<T>& thisFraction);
         // Overloads the input stream insertion operator.
         // The input is taken from the user in the format:
         // numerator/denominator
@@ -117,7 +117,7 @@ class Fraction
             // Multiplies the calling Fraction object 
             // by the inverse of the otherFraction object.
         
-        Fraction (dataType numeratorParam = 0, dataType denominatorParam = 1);
+        Fraction (T numeratorParam = 0, T denominatorParam = 1);
             // Constructor with default values.
    
     private:
@@ -153,14 +153,14 @@ class Fraction
 //using namespace std;
     // Commented out for same reason as above.
 
-
+template<typename T>
 ostream& operator<< (ostream& osObj, Fraction<T>& thisFraction)
 {
     osObj << thisFraction.numerator << "/" << thisFraction.denominator;
     
     return osObj;
 }
-
+template<typename T>
 istream& operator>> (istream& isObj, Fraction<T>& thisFraction)
 {
     char ch;
@@ -191,7 +191,7 @@ T Fraction<T>::getDenominator() const
 }
 
 template <typename T>
-Fraction Fraction<T>::operator++ ()
+Fraction<T> Fraction<T>::operator++ ()
 {
     ++numerator;
 
@@ -199,7 +199,7 @@ Fraction Fraction<T>::operator++ ()
 }
 
 template <typename T>
-Fraction Fraction<T>::operator++ (T dummyParameter)
+Fraction<T> Fraction<T>::operator++ (T dummyParameter)
 {
     Fraction temp = *this;
 
@@ -210,7 +210,7 @@ Fraction Fraction<T>::operator++ (T dummyParameter)
 }
 
 template <typename T>
-Fraction Fraction<T>::operator-- ()
+Fraction<T> Fraction<T>::operator-- ()
 {
     numerator--;
 
@@ -218,7 +218,7 @@ Fraction Fraction<T>::operator-- ()
 }
 
 template <typename T>
-Fraction Fraction<T>::operator-- (T dummyParameter)
+Fraction<T> Fraction<T>::operator-- (T dummyParameter)
 {
     Fraction temp = *this;
 
@@ -288,7 +288,7 @@ return (thisFrac > otherFrac);
 }       
 
 template <typename T>
-Fraction Fraction<T>::operator+ (const Fraction& otherFraction) const
+Fraction<T> Fraction<T>::operator+ (const Fraction& otherFraction) const
 {
     Fraction tempFrac;
 
@@ -300,7 +300,7 @@ Fraction Fraction<T>::operator+ (const Fraction& otherFraction) const
 }
 
 template <typename T>
-Fraction Fraction<T>::operator- (const Fraction& otherFraction) const
+Fraction<T> Fraction<T>::operator- (const Fraction& otherFraction) const
 {
     Fraction tempFrac;
 
@@ -312,7 +312,7 @@ Fraction Fraction<T>::operator- (const Fraction& otherFraction) const
 }
 
 template <typename T>
-Fraction Fraction<T>::operator* (const Fraction& otherFraction) const
+Fraction<T> Fraction<T>::operator* (const Fraction& otherFraction) const
 {
     Fraction tempFrac;
 
@@ -323,7 +323,7 @@ Fraction Fraction<T>::operator* (const Fraction& otherFraction) const
 }
 
 template <typename T>
-Fraction Fraction<T>::operator/ (const Fraction& otherFraction) const
+Fraction<T> Fraction<T>::operator/ (const Fraction& otherFraction) const
 {
     Fraction tempFrac;
 
