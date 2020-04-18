@@ -11,6 +11,7 @@
 #include "fractionException.h"
 #include "fraction.h"
 
+#include <exception>
 #include <iostream>
 #include <iomanip>
 

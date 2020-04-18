@@ -12,6 +12,7 @@
 #include "fraction.h"
 #include "fractionException.h"
    
+#include <exception>
 #include <iostream>
 
 using namespace std;
@@ -24,7 +25,7 @@ ostream& operator<< (ostream& osObj, Fraction& thisFraction)
     return osObj;
 }
 
-istream& operator>> (istream& isObj, Fraction& thisFraction) throw(fractionException)
+istream& operator>> (istream& isObj, Fraction& thisFraction) nothrow
 {
     char ch;
     
@@ -43,7 +44,7 @@ istream& operator>> (istream& isObj, Fraction& thisFraction) throw(fractionExcep
     return isObj;
 }
 
-void Fraction::setValues(int& numeratorParam, int& denominatorParam) throw(fractionException)
+void Fraction::setValues(int& numeratorParam, int& denominatorParam) nothrow
 {
     if (denominatorParam == 0)
         throw fractionException("Error: Divide by zero, denominator = 0");
@@ -180,10 +181,10 @@ Fraction Fraction::operator* (const Fraction& otherFraction) const
     return tempFrac;
 }
 
-Fraction Fraction::operator/ (const Fraction& otherFraction) const throw(fractionException)
+Fraction Fraction::operator/ (const Fraction& otherFraction) const nothrow
 {
     if (otherFraction.numerator == 0)
-        throw fractionException("Error: Division by zero.")
+        throw fractionException("Error: Division by zero.");
     
     Fraction tempFrac;
 
