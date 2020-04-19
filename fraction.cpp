@@ -24,29 +24,24 @@ ostream& operator<< (ostream& osObj, Fraction& thisFraction)
     return osObj;
 }
 
-istream& operator>> (istream& isObj, Fraction& thisFraction) throw(fractionException)
+istream& operator>> (istream& isObj, Fraction& thisFraction) 
 {
     char ch;
     
-    try{
-        isObj >> thisFraction.numerator;
-        if (isObj.fail()) 
-            throw fractionException("Invalid input, not an integer.");
-        isObj.get(ch);
-        isObj >> thisFraction.denominator;
-        if (isObj.fail()) 
-            throw fractionException("Invalid input, not an integer.");
-    }
-    catch(fractionException e){
-        throw e;
-    }
+    
+    isObj >> thisFraction.numerator;
+    isObj.get(ch);
+    isObj >> thisFraction.denominator;
+   
     return isObj;
 }
 
-void Fraction::setValues(int& numeratorParam, int& denominatorParam) throw(fractionException)
+void Fraction::setValues(int& numeratorParam, int& denominatorParam) 
 {
+    string errorMessage = "Error: Division by zero.";
+    
     if (denominatorParam == 0)
-        throw fractionException("Error: Divide by zero, denominator = 0");
+        throw fractionException(errorMessage);
     numerator = numeratorParam;
     denominator = denominatorParam;
 }
@@ -180,10 +175,12 @@ Fraction Fraction::operator* (const Fraction& otherFraction) const
     return tempFrac;
 }
 
-Fraction Fraction::operator/ (const Fraction& otherFraction) const throw(fractionException)
+Fraction Fraction::operator/ (const Fraction& otherFraction) const 
 {
+    string errorMessage = "Error: Division by zero";
+    
     if (otherFraction.numerator == 0)
-        throw fractionException("Error: Division by zero.")
+        throw fractionException(errorMessage);
     
     Fraction tempFrac;
 
