@@ -17,7 +17,7 @@ using namespace std;
 
 
 const char* fractionException::what() const throw() {
-    return errorMessage.c_str;
+    return errorMessage.c_str();
 }
         
 fractionException::fractionException() {
