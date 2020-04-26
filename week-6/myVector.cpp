@@ -40,22 +40,94 @@ class myVector: public vector<T>{
 
 template <typename T>
 int myVector<T>::seqSearch(T searchItem){
-    // Implement seq search
+    int loc;
+    bool found = false;
+
+    loc = 0;
+     
+    while (loc < listLength && !found)
+        if (list[loc] == searchItem)
+            found = true;
+        else
+            loc++;
+        if (found)
+            return loc;
+        else
+            return -1;
 }
 
 template <typename T>
 void myVector<T>::bubbleSort(){
-    // Implement bubble sort
+    int temp;
+
+    for (int iteration = 1; iteration < length; iteration++)
+    {
+        for (int index = 0; index < length - iteration; index++)
+            if (list[index] > list[index + 1])
+            {
+                temp = list[index];
+                list[index] = list[index + 1];
+                list[index + 1] = temp;
+            }
+    }
 }
 
 template <typename T>
 void myVector<T>::insertionSort(){
     // Implement insertion sort
+
+// void insertionSort(int list[], int length);
+
+// int main(){
+//     int list[] = {20, 36, 24, 65, 78,
+//                   45, 58, 90, 2, 15};
+    
+//     insertionSort(list, 10);
+
+//     cout << "After sorting, the list "
+//          << "elements are: " << endl;
+
+//     for (int i = 0; i < 10; i++)
+//         cout << list[i] << " " << endl;
+
+//     return 0;
+// }
+
+
 }
 
 template <typename T>
 int myVector<T>::binarySearch(T searchItem){
     // Implement binary search
+
+// int binarySearch (const int list[], int listLength, int searchItem)
+// {
+//     int first = 0;
+//     int last = listLength - 1;
+//     int mid;
+
+//     bool found = false;
+
+//     while (first <= last && !found)
+//     {
+//         mid = (first + last) / 2;
+
+//         if (list[mid] == searchItem)
+//             found = true;
+//         else if (list[mid] > searchItem)
+//             last = mid -1;
+//         else
+//             first = mid + 1;        
+//     }
+
+//     if (found)
+//         return mid;
+//     else
+//         return -1;   
+// }
+
+
+
 }
 
 
