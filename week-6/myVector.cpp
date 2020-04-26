@@ -21,10 +21,12 @@ using namespace std;
 
 
 
-// Class myVector header ##################
+// Class myVector header...
 
 template <typename T>
 class myVector: public vector<T>{
+
+    static bool isSorted;
 
     public:
         int seqSearch(T searchItem);
@@ -34,7 +36,7 @@ class myVector: public vector<T>{
 };
 
 
-//  Class myVector implementation ##########
+//  Class myVector implementation...
 
 template <typename T>
 int myVector<T>::seqSearch(T searchItem){
@@ -56,3 +58,33 @@ int myVector<T>::binarySearch(T searchItem){
     // Implement binary search
 }
 
+
+
+//  Test program for the myVector class...
+
+int main(){
+    
+    // Define test vector(s)
+    myVector<string> nameList;
+
+    //  Add values to the vector(s)
+
+    //  Test sort methods
+
+    //  Test search methods
+
+    //  Print sorted vector using range
+    //  based for loop
+        //  Define new test vector(s)
+
+        //  Define an iterator to each of
+        //  the above vector containers
+
+        //  Add values to the vector(s)
+        //  Test the STL sort method
+        //  Test the STL binary_search algorithm
+        //  Print the resulting vector(s) using 
+        //  an iterator
+    
+    return 0;
+}
