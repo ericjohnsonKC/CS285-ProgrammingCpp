@@ -56,45 +56,6 @@ int myVector<T>::seqSearch(T searchItem){
             return -1;
 }
 
-template <typename T>
-void myVector<T>::bubbleSort(){
-    int temp;
-
-    for (int iteration = 1; iteration < length; iteration++)
-    {
-        for (int index = 0; index < length - iteration; index++)
-            if (list[index] > list[index + 1])
-            {
-                temp = list[index];
-                list[index] = list[index + 1];
-                list[index + 1] = temp;
-            }
-    }
-}
-
-template <typename T>
-void myVector<T>::insertionSort(){
-    // Implement insertion sort
-
-// void insertionSort(int list[], int length);
-
-// int main(){
-//     int list[] = {20, 36, 24, 65, 78,
-//                   45, 58, 90, 2, 15};
-    
-//     insertionSort(list, 10);
-
-//     cout << "After sorting, the list "
-//          << "elements are: " << endl;
-
-//     for (int i = 0; i < 10; i++)
-//         cout << list[i] << " " << endl;
-
-//     return 0;
-// }
-
-
-}
 
 template <typename T>
 int myVector<T>::binarySearch(T searchItem){
@@ -129,6 +90,52 @@ int myVector<T>::binarySearch(T searchItem){
 
 
 }
+
+
+template <typename T>
+void myVector<T>::bubbleSort(){
+    int temp;
+
+    for (int iteration = 1; iteration < length; iteration++)
+    {
+        for (int index = 0; index < length - iteration; index++)
+            if (list[index] > list[index + 1])
+            {
+                temp = list[index];
+                list[index] = list[index + 1];
+                list[index + 1] = temp;
+            }
+    }
+}
+
+template <typename T>
+void myVector<T>::insertionSort(){
+    // Implement insertion sort
+
+
+// void insertionSort(int list[], int listLength){
+//     int firstOutOfOrder, location;
+//     int temp;
+
+//     for (firstOutOfOrder = 1; firstOutOfOrder < listLength; firstOutOfOrder++)
+//         if (list[firstOutOfOrder] < list[firstOutOfOrder -1])
+//         {
+//             temp = list[firstOutOfOrder];
+//             location = firstOutOfOrder;
+
+//             do{
+//                 list[location] = list[location -1];
+//                 location--;
+//             }
+//             while (location > 0 && list[location - 1] > temp);
+
+//             list[location] = temp;
+//         }
+// }
+
+
+}
+
 
 
 
