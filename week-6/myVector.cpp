@@ -43,74 +43,122 @@ class myVector: public vector<T>{
 int main(){
     
     // Define test vector(s)
+    cout << "defining two test vectors...\n";
     myVector<string> nameList_1;
     myVector<string> nameList_2;
 
     //  Add values to the vector(s)
-    nameList_1.push_back("Ruth", "Gehrig", "Mantle", "Rivera", "Jeter", "Rizzuto", "Berra");
+    cout << "adding values to vector #1...\n";
+    nameList_1.push_back("Ruth");
+    nameList_1.push_back("Gehrig");
+    nameList_1.push_back("Mantle");
+    nameList_1.push_back("Rivera");
+    nameList_1.push_back("Jeter");
+    nameList_1.push_back("Rizzuto");
+    nameList_1.push_back("Berra");
 
     //  Test sort methods
+    cout << "sorting vector #1 with bubble sort...\n";
     nameList_1.bubbleSort();
     
-    nameList_2.push_back("Ryan", "Koufax", "Martinez", "Maddux", "Johnson", "Feller", "Kershaw");
+    cout << "adding values to vector #2...\n";
+    nameList_2.push_back("Ryan");
+    nameList_2.push_back("Koufax");
+    nameList_2.push_back("Martinez");
+    nameList_2.push_back("Maddux");
+    nameList_2.push_back("Johnson");
+    nameList_2.push_back("Feller");
+    nameList_2.push_back("Kershaw");
 
+    cout << "sorting vector #2 with insertion sort...\n";
     nameList_2.insertionSort();
 
+    cout << "setting the sorted flag to true...\n";
     myVector<string>::isSorted = true;
 
     //  Test search methods
-    nameList_1.seqSearch("Bonds");
-    nameList_1.seqSearch("Ramirez");
+    cout << "searching vector #1...\n";
+    cout << nameList_1.seqSearch("Bonds");
+    cout << "searching vector #1...\n";
+    cout << nameList_1.seqSearch("Ramirez");
 
-    nameList_2.binarySearch("Valenzuela");
-    nameList_2.binarySearch("Scherzer");
+    cout << "searching vector #2...\n";
+    cout << nameList_2.binarySearch("Valenzuela");
+    cout << "searching vector #2...\n";
+    cout << nameList_2.binarySearch("Scherzer");
 
     //  Print sorted vector using range
     //  based for loop...
+    cout << "printing vector #1...\n";
     for (auto name : nameList_1)
     {
-        cout << "Name list #1: " << endl;
-        cout << name << " ";
+        cout << name << ", ";
     }
+    cout << endl;
 
+    cout << "printing vector #2..\n";
     for (auto name : nameList_2)
     {
         cout << "Name list #2 : " << endl;
         cout << name << " ";
     }
+    cout << endl;
 
     //  Define new test vector(s)...
+    cout << "defining two more vectors...\n";
     myVector<string> nameList_3;
     myVector<string> nameList_4;
 
-    nameList_3.push_back("taco", "burrito", "nacho", "fajita", "quesadilla", "enchilada", "chorizo");
-    nameList_4.push_back("spaghetti", "fettucini", "linguini", "angel hair", "penne", "rigatoni", "ravioli");
+    cout << "adding values to vector #3...\n";
+    nameList_3.push_back("taco");
+    nameList_3.push_back("burrito");
+    nameList_3.push_back("nacho");
+    nameList_3.push_back("fajita");
+    nameList_3.push_back("quesadilla");
+    nameList_3.push_back("enchilada");
+    nameList_3.push_back("chorizo");
+
+    cout << "adding values to vector #4...\n";
+    nameList_4.push_back("spaghetti");
+    nameList_4.push_back("fettucini");
+    nameList_4.push_back("linguini");
+    nameList_4.push_back("angel hair");
+    nameList_4.push_back("penne");
+    nameList_4.push_back("rigatoni");
+    nameList_4.push_back("ravioli");
         
     //  Define an iterator to each of
     //  the above vector containers...
+    cout << "defining an iterator...\n";
     myVector<string>::iterator iter;
 
     
     //  Add values to the vector(s)...
+    cout << "adding values to the new vectors...\n";
     nameList_3.push_back("carne asada");
     nameList_4.push_back("pasta faziole");
         
     //  Test the STL sort method
+    cout << "testing the STL sort method...\n";
     sort(nameList_3.begin(), nameList_3.end());
 
 
     //  Test the STL binary_search algorithm
+    cout << "testing the STL binary_search algorithm...\n";
     binary_search(nameList_4.begin(), nameList_4.end(), "calzone");
     binary_search(nameList_4.begin(), nameList_4.end(), "ravioli");
 
     //  Print the resulting vector(s) using 
     //  an iterator
+    cout << "printing the resulting vectors using an iterator...\n";
+    cout << "vector #3 after sorting: ";
     for (auto iter : nameList_3)
     {
-        cout << "Name list #3 after sorting: \n";
         cout << iter << endl;
     }
+    cout << endl;
 
+    cout << "vector #4 after sorting: ";
     for (auto iter : nameList_4)
     {
         cout << "Name list #4 after sorting: \n";
@@ -131,7 +179,7 @@ int myVector<T>::seqSearch(T searchItem){
     loc = 0;
      
     while (loc < this->size() && !found)
-        if (list[loc] == searchItem)
+        if (this[loc] == searchItem)
             found = true;
         else
             loc++;
@@ -174,9 +222,9 @@ template <typename T>
 void myVector<T>::bubbleSort(){
     int temp;
 
-    for (int iteration = 1; iteration < length; iteration++)
+    for (int iteration = 1; iteration < this->size(); iteration++)
     {
-        for (int index = 0; index < length - iteration; index++)
+        for (int index = 0; index < this->size() - iteration; index++)
             if (this[index] > this[index + 1])
             {
                 temp = this[index];
