@@ -26,9 +26,11 @@ using namespace std;
 template <typename T>
 class myVector: public vector<T>{
 
-    static bool isSorted;
+    
 
     public:
+        static bool isSorted;
+
         int seqSearch(T searchItem);
         int binarySearch(T searchItem);
         void bubbleSort();
