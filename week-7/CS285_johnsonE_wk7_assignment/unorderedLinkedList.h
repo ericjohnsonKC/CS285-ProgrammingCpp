@@ -2,6 +2,8 @@
 #define H_UnorderedLinkedList  
 
 #include "linkedList.h"
+
+#include<vector>
  
 using namespace std; 
 
@@ -22,6 +24,13 @@ public:
       //               last points to the last node in the  
       //               list, and count is incremented by 1.
 
+    void insertFirst(const vector<Type>& newItemList);
+      //Function to insert vector at the beginning of the list.
+      //Postcondition: first points to the new list, newItem is
+      //               inserted at the beginning of the list,
+      //               last points to the last node in the  
+      //               list, and count is incremented by 1.
+
     void insertLast(const Type& newItem);
       //Function to insert newItem at the end of the list.
       //Postcondition: first points to the new list, newItem 
@@ -29,8 +38,23 @@ public:
       //               last points to the last node in the 
       //               list, and count is incremented by 1.
 
+      void insertLast(const vector<Type>& newItemList);
+      //Function to insert vector at the end of the list.
+      //Postcondition: first points to the new list, newItem 
+      //               is inserted at the end of the list,
+      //               last points to the last node in the 
+      //               list, and count is incremented by 1.
+
     void deleteNode(const Type& deleteItem);
       //Function to delete deleteItem from the list.
+      //Postcondition: If found, the node containing 
+      //               deleteItem is deleted from the list.
+      //               first points to the first node, last
+      //               points to the last node of the updated 
+      //               list, and count is decremented by 1.
+
+    void deleteNode(const vector<Type>& deleteItem);
+      //Function to delete vector from the list.
       //Postcondition: If found, the node containing 
       //               deleteItem is deleted from the list.
       //               first points to the first node, last
@@ -77,6 +101,28 @@ void unorderedLinkedList<Type>::insertFirst(const Type& newItem)
 }//end insertFirst
 
 template <class Type>
+void unorderedLinkedList<Type>::insertFirst(const vector<Type>& newItemList)
+{
+    nodeType<Type> *newNode; //pointer to create the new node
+
+    for(auto newItem : newItemList){
+        newNode = new nodeType<Type>; //create the new node
+
+        newNode->info = newItem;    //store the new item in the node
+        newNode->link = first;      //insert newNode before first
+        first = newNode;            //make first point to the
+                                    //actual first node
+    count++;                    //increment count
+    }
+
+    if (last == nullptr)   //if the list was empty, newNode is also 
+                        //the last node in the list
+        last = newNode;
+}//end insertFirst
+
+
+
+template <class Type>
 void unorderedLinkedList<Type>::insertLast(const Type& newItem)
 {
     nodeType<Type> *newNode; //pointer to create the new node
@@ -103,6 +149,36 @@ void unorderedLinkedList<Type>::insertLast(const Type& newItem)
     }
 }//end insertLast
 
+template <class Type>
+void unorderedLinkedList<Type>::insertLast(const vector<Type>& newItemList)
+{
+    nodeType<Type> *newNode; //pointer to create the new node
+
+    for(auto newItem : newItemList)
+    {
+        newNode = new nodeType<Type>; //create the new node
+
+        newNode->info = newItem;  //store the new item in the node
+        newNode->link = nullptr;     //set the link field of newNode
+                                //to nullptr
+
+        if (first == nullptr)  //if the list is empty, newNode is 
+                            //both the first and last node
+        {
+            first = newNode;
+            last = newNode;
+            count++;        //increment count
+        }
+        else    //the list is not empty, insert newNode after last
+        {
+            last->link = newNode; //insert newNode after last
+            last = newNode; //make last point to the actual 
+                            //last node in the list
+            count++;        //increment count
+        }
+    }
+}//end insertLast
+
 
 template <class Type>
 void unorderedLinkedList<Type>::deleteNode(const Type& deleteItem)
@@ -111,9 +187,17 @@ void unorderedLinkedList<Type>::deleteNode(const Type& deleteItem)
     nodeType<Type> *trailCurrent; //pointer just before current
     bool found;
 
-    if (first == nullptr)    //Case 1; the list is empty. 
-        cout << "Cannot delete from an empty list."
-             << endl;
+    try
+    {
+        if (first == nullptr)    //Case 1; the list is empty. 
+            string errorMessage_1 = "Cannot delete from an empty list";
+            throw errorMessage_1;
+    }
+
+    catch(string errorMessage_1)
+    {
+        throw errorMessage_1;
+    }
     else
     {
         if (first->info == deleteItem) //Case 2 
@@ -144,22 +228,110 @@ void unorderedLinkedList<Type>::deleteNode(const Type& deleteItem)
                     found = true;
             }//end while
 
-            if (found) //Case 3; if found, delete the node
+            try
             {
-                trailCurrent->link = current->link;
-                count--;
+                if (found) //Case 3; if found, delete the node
+                {
+                    trailCurrent->link = current->link;
+                    count--;
 
-                if (last == current)   //node to be deleted 
-                                       //was the last node
-                    last = trailCurrent; //update the value 
-                                         //of last
-                delete current;  //delete the node from the list
+                    if (last == current)   //node to be deleted 
+                                        //was the last node
+                        last = trailCurrent; //update the value 
+                                            //of last
+                    delete current;  //delete the node from the list
+                }
+                else
+                    string errorMessage_2 = "The item to be deleted is not in the list.";
+                    throw errorMessage_2;
             }
-            else
-                cout << "The item to be deleted is not in "
-                     << "the list." << endl;
+
+            catch(string errorMessage_2)
+            {
+                throw errorMessage_2;
+            }
         }//end else
     }//end else
+}//end deleteNode
+
+template <class Type>
+void unorderedLinkedList<Type>::deleteNode(const vector<Type>& deleteItemlist)
+{
+    nodeType<Type> *current; //pointer to traverse the list
+    nodeType<Type> *trailCurrent; //pointer just before current
+    bool found;
+
+    for(auto deleteItem : deleteItemList)
+    {
+        try
+        {
+            string errorMessage_1 = "Cannot delete from an empty list"
+
+            if (first == nullptr)    //Case 1; the list is empty. 
+                throw errorMessage_1;
+        }
+
+        catch(string errorMessage_1)
+        {
+            throw errorMessage_1;
+        }
+
+        else
+        {
+            if (first->info == deleteItem) //Case 2 
+            {
+                current = first;
+                first = first->link;
+                count--;
+                if (first == nullptr)    //the list has only one node
+                    last = nullptr;
+                delete current;
+            }
+            else //search the list for the node with the given info
+            {
+                found = false;
+                trailCurrent = first;  //set trailCurrent to point
+                                    //to the first node
+                current = first->link; //set current to point to 
+                                    //the second node
+
+                while (current != nullptr && !found)
+                {
+                    try
+                    {                                        
+                        if (current->info != deleteItem) 
+                        {
+                            trailCurrent = current;
+                            current = current-> link;
+                            string errorMessage_2 = "Item not found";
+                            throw errorMessage_2;
+                        }
+                        else
+                            found = true;
+                    }
+
+                    catch(string errorMessage_2)
+                    {
+                        throw errorMessage_2;
+                    }
+
+                }//end while
+
+                if (found) //Case 3; if found, delete the node
+                {
+                    trailCurrent->link = current->link;
+                    count--;
+
+                    if (last == current)   //node to be deleted 
+                                        //was the last node
+                        last = trailCurrent; //update the value 
+                                            //of last
+                    delete current;  //delete the node from the list
+                }
+                
+            }//end else
+        }//end else
+    }
 }//end deleteNode
 
 
